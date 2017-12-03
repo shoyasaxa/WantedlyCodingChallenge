@@ -16,9 +16,13 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from skills import views as skills_views
+from core import views as core_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('core.urls')),
+    url(r'^login/$', core_views.login, name="login"),
+    url(r'^logout/$', core_views.logout, name="logout"),
+    url(r'^users/$', skills_views.user_list, name="user_list"),
     url(r'^users/(?P<pk>[0-9]+)/', skills_views.user_profile, name="user_profile"),
 ]

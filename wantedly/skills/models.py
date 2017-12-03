@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
+from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
 
 class SkillSet(models.Model):
-	user_key = models.ForeignKey("core.User", on_delete=models.CASCADE)
+	user_key = models.ForeignKey("auth.User", on_delete=models.CASCADE)
 	skill = models.ForeignKey("Skill", on_delete=models.CASCADE)
 	endorsements = models.PositiveSmallIntegerField()
 

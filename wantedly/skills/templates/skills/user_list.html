@@ -1,0 +1,10 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+	{% for user in users %}
+		<ul> 
+			<a class="nav-link disabled" href="{% url 'user_profile' pk=user.pk %}">{{ user.username }} </a>
+		</ul>
+	{% endfor %}
+
+{% endblock %}

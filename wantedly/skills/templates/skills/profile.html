@@ -1,0 +1,9 @@
+<p>User is: {{ user }}</p>
+
+
+{% for skill_set in skill_sets %}
+	<ul> 
+		<li> skill: {{ skill_set.skill }} </li>
+		<li> Endorsements: {{ skill_set.endorsements}} </li>
+	</ul>
+{% endfor %}

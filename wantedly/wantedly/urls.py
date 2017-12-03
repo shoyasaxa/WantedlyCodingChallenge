@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from skills import views as skills_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('core.urls')),
+    url(r'^users/(?P<pk>[0-9]+)/', skills_views.user_profile, name="user_profile"),
 ]

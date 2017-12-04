@@ -7,7 +7,7 @@ from skills.forms import AddSkillForm
 
 # Create your views here.
 def user_profile(request, pk):
-	user = User.objects.get(pk=pk)
+	profile_user = User.objects.get(pk=pk)
 	skill_sets = SkillSet.objects.all().filter(user_key=pk)
 
 	if request.method == "POST":
@@ -21,7 +21,7 @@ def user_profile(request, pk):
 		form = AddSkillForm()
 
 	args = {
-		'user' : user,
+		'profile_user' : profile_user,
 		'skill_sets' : skill_sets, 
 		'form': form
 	}	

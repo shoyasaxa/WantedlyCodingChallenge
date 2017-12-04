@@ -8,7 +8,7 @@ from django.db import models
 class SkillSet(models.Model):
 	user_key = models.ForeignKey("auth.User", on_delete=models.CASCADE)
 	skill = models.ForeignKey("Skill", on_delete=models.CASCADE)
-	endorsements = models.PositiveSmallIntegerField()
+	endorsements = models.PositiveSmallIntegerField(default=0)
 
 	def __str__(self):
 		return str(self.user_key) + " " + str(self.skill) + " " + str(self.endorsements)

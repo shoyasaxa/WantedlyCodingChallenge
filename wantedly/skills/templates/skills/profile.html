@@ -14,7 +14,7 @@
 			<li> Endorsements: {{ skill_set.endorsements}} </li>
 			{% if user.is_authenticated %}
 				{% if not profile_user.pk == user.pk  %}
-					<a href="" type="button" class="btn btn-primary">
+					<a href="{% url 'endorse' user_profile_pk=profile_user.pk skill_set_pk=skill_set.pk %}" type="button" class="btn btn-primary">
 						Endorse
 					</a>
 

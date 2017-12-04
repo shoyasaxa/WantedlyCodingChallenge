@@ -25,4 +25,6 @@ urlpatterns = [
     url(r'^logout/$', core_views.logout, name="logout"),
     url(r'^users/$', skills_views.user_list, name="user_list"),
     url(r'^users/(?P<pk>[0-9]+)/', skills_views.user_profile, name="user_profile"),
+    url(r'^endorse/(?P<user_profile_pk>[0-9]+)/(?P<skill_set_pk>[0-9]+)/$', skills_views.endorse, name="endorse"),
+
 ]

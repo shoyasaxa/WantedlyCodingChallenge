@@ -38,6 +38,7 @@ def user_list(request):
 	return render(request, 'skills/user_list.html', args)
 
 def endorse(request, user_profile_pk, skill_set_pk):
+	
 	# need to expand user model to include which skill for which person a user has
 	# already endorsed
 

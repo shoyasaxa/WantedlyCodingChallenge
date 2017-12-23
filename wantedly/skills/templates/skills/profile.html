@@ -8,15 +8,25 @@
 					Add a Skill
 	</button>
 
-	{% for skill_set in skill_sets %}
+	{% for skill_set, endorsed_skill in skill_sets %}
 		<ul> 
+			<li>{{ endorsed_skill }}</li>
 			<li> skill: {{ skill_set.skill }} </li>
 			<li> Endorsements: {{ skill_set.endorsements}} </li>
 			{% if user.is_authenticated %}
 				{% if not profile_user.pk == user.pk  %}
-					<a href="{% url 'endorse' user_pk=user.pk user_profile_pk=profile_user.pk skill_set_pk=skill_set.pk %}" type="button" class="btn btn-primary">
-						Endorse
-					</a>
+
+					{% if not endorsed_skill %}
+						<a href="{% url 'endorse' user_pk=user.pk user_profile_pk=profile_user.pk skill_set_pk=skill_set.pk %}" type="button" class="btn btn-primary">
+							Endorse
+						</a>
+					{% endif %}
+
+					{% if endorsed_skill %}
+						<button type="button" class="btn btn-primary disabled">
+							Endorsed
+						</button>
+					{% endif %}
 
 				{% endif %}
 			{% endif %}

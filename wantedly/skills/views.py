@@ -12,14 +12,18 @@ def user_profile(request, user_pk, user_profile_pk):
 
 	# endorsements that the current user has given to this profile 
 	endorsements = Endorsement.objects.all().filter(user_endorsing=active_user, user_endorsed=profile_user)
+	print(endorsements)
 
 	# an array to keep track of if any of the skills are endorsed by this active user,
 	# which would disable the endorse button 
+	
 	endorsed = []
 	if endorsements:
 		i = 0
 		for skill_set in skill_sets:
-			if (skill_set == endorsements[i]):
+			print('skill_set', skill_set)
+			#print('endorsements[i].endorsed_skill_set', endorsements[i].endorsed_skill_set)
+			if (i < len(endorsements) and skill_set == endorsements[i].endorsed_skill_set):
 				endorsed.append(1)
 				i = i + 1 
 				print ("endorsement matches!")
@@ -29,6 +33,8 @@ def user_profile(request, user_pk, user_profile_pk):
 		for skill_set in skill_sets:
 			endorsed.append(0)
 
+	print ('skill_sets', skill_sets)
+	print ('endorsements', endorsements)
 	print ('endorsed', endorsed)
 
 
@@ -43,12 +49,12 @@ def user_profile(request, user_pk, user_profile_pk):
 		form = AddSkillForm()
 
 
-	#skill_sets_zipped = zip(skill_sets, endorsed)
+	skill_sets_zipped = zip(skill_sets, endorsed)
 	
 	args = {
 		'profile_user' : profile_user,
 		'skill_sets' : skill_sets,
-		#'skill_sets' : skill_sets_zipped, 
+		'skill_sets' : skill_sets_zipped, 
 
 		# TODO: FIX WHY I RUN INTO REVERSE ERRORS IF I UNCOMMENT THE ABOVE 
 

@@ -1,9 +1,9 @@
 {% extends 'core/base.html' %}
 
 {% block content %}
-	{% for user in users %}
+	{% for profile_user in users %}
 		<ul> 
-			<a class="nav-link disabled" href="{% url 'user_profile' pk=user.pk %}">{{ user.username }} </a>
+			<a class="nav-link disabled" href="{% url 'user_profile' user_pk=user.pk user_profile_pk=profile_user.pk %}">{{ profile_user.username }} </a>
 		</ul>
 	{% endfor %}
 

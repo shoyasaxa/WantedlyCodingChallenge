@@ -18,3 +18,11 @@ class Skill(models.Model):
 
 	def __str__(self):
 		return self.name
+
+class Endorsement(models.Model):
+	user_endorsing = models.ForeignKey("auth.User", related_name="endorsing", on_delete=models.CASCADE)
+	user_endorsed = models.ForeignKey("auth.User", related_name="endorsed", on_delete=models.CASCADE)
+	endorsed_skill_set = models.ForeignKey("SkillSet", on_delete=models.CASCADE)
+
+	def __str__(self):
+		return str(self.user_endorsing) + " is endorsing " + str(self.user_endorsed) + " for " + str(self.endorsed_skill_set)

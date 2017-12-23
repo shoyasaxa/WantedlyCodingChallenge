@@ -21,21 +21,14 @@ def user_profile(request, user_pk, user_profile_pk):
 	if endorsements:
 		i = 0
 		for skill_set in skill_sets:
-			print('skill_set', skill_set)
-			#print('endorsements[i].endorsed_skill_set', endorsements[i].endorsed_skill_set)
 			if (i < len(endorsements) and skill_set == endorsements[i].endorsed_skill_set):
 				endorsed.append(1)
 				i = i + 1 
-				print ("endorsement matches!")
 			else:
 				endorsed.append(0)
 	else:
 		for skill_set in skill_sets:
 			endorsed.append(0)
-
-	print ('skill_sets', skill_sets)
-	print ('endorsements', endorsements)
-	print ('endorsed', endorsed)
 
 
 	if request.method == "POST":
@@ -55,9 +48,6 @@ def user_profile(request, user_pk, user_profile_pk):
 		'profile_user' : profile_user,
 		'skill_sets' : skill_sets,
 		'skill_sets' : skill_sets_zipped, 
-
-		# TODO: FIX WHY I RUN INTO REVERSE ERRORS IF I UNCOMMENT THE ABOVE 
-
 		'form': form
 	}	
 
@@ -88,3 +78,33 @@ def endorse(request, user_pk, user_profile_pk, skill_set_pk):
 	endorsement.save()
 
 	return redirect('user_profile', user_pk=user_pk, user_profile_pk=user_profile_pk)
+
+def skills_list(request):
+
+	skills = Skill.objects.all().order_by('name')
+
+	args = {
+		'skills': skills,
+	}
+
+	return render(request, 'skills/skills_list.html', args)
+
+
+def skills_users(request, skill_pk):
+
+	skill_sets = SkillSet.objects.filter(skill__id=skill_pk)
+	
+	print(skill_sets)
+
+	related_users = []
+
+	for skill_set in skill_sets:
+		related_users.append(skill_set.user_key)
+
+	print(related_users)
+
+	args = {
+		'users': related_users
+	}
+
+	return render(request, 'skills/skills_users.html', args)

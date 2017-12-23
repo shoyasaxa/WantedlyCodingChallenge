@@ -26,6 +26,6 @@ urlpatterns = [
     url(r'^users/$', skills_views.user_list, name="user_list"),
     url(r'^endorse/(?P<user_pk>[0-9]+)/(?P<user_profile_pk>[0-9]+)/(?P<skill_set_pk>[0-9]+)/$', skills_views.endorse, name="endorse"),
     url(r'^users/(?P<user_pk>[0-9]+)/(?P<user_profile_pk>[0-9]+)/$', skills_views.user_profile, name="user_profile"),
-    
-
+    url(r'^skills/$', skills_views.skills_list, name="skills_list"),
+    url(r'^skills/(?P<skill_pk>[0-9]+)/$', skills_views.skills_users, name="skills_users"),
 ]

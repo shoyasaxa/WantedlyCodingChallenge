@@ -1,0 +1,17 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+	{% if users %}
+		{% for skill_user in users %}
+			<div> 
+				<a href="{% url 'user_profile' user.pk skill_user.pk %}" > {{ skill_user }}</a>
+			</div>
+		{% endfor %}
+	{% endif %}
+
+	{% if not users %}
+		<p> There are no users with this skill </p>
+	{% endif %}
+
+
+{% endblock %}

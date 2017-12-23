@@ -1,0 +1,10 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+	{% for skill in skills %}
+		<div>
+			<a href="{% url 'skills_users' skill.pk %}" >{{ skill }}</a>
+		</div>
+	{% endfor %}
+
+{% endblock %}
